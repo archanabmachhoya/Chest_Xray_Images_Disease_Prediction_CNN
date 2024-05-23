@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chest X-Ray Disease Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Chest X-Ray Disease Prediction</h1>
+    <form action="/predict" method="post" enctype="multipart/form-data">
+        <input type="file" name="file">
+        <button type="submit">Upload</button>
+    </form>
+    {% if prediction %}
+        <h2>Prediction:</h2>
+        <ul>
+            {% for label in prediction %}
+                <li>{{ label }}</li>
+            {% endfor %}
+        </ul>
+        <h2>Uploaded Image:</h2>
+        <img src="{{ url_for('static', filename=img_path) }}" alt="Uploaded Image" style="max-width: 500px; max-height: 500px;">
+    {% endif %}
+</body>
+</html>
+
